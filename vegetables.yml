@@ -1,0 +1,9 @@
+tags:
+    globalTitle: CSC Haskell
+    menu:
+        - uri: lesson1.html
+          label: Lessons 1 - Introduction
+
+pageOptions:
+    README.md:
+        layout: homepage

@@ -1,0 +1,256 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lesson 1 Introduction - CSC Haskell</title>
+    <link rel="stylesheet" href="assets/css/highlight-hybrid.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+    <header class="navbar navbar-default navbar-fixed-top"><div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">CSC Haskell</a>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+            <li role="presentation" class="active"><a href="lesson1.html">Lessons 1 - Introduction</a></li>
+        </ul>
+        <form action="search.html" class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" name="q" id="tipue_search_input" autocomplete="off" required class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="lesson1-slideshow.html" target="_blank">View as slideshow</a></li>
+        </ul>
+    </div>
+
+</div>
+</header>
+
+    <div class="container" id="result">
+        <div class="row">
+            <nav id="sidebar" class="col-lg-2 col-sm-3 hidden-xs">
+                <!-- Will be the toc-->
+            </nav>
+            <section id="content" class="col-lg-10 col-sm-9">
+                <h1 id="lesson-1-introduction-to-haskell">Lesson 1: Introduction To Haskell</h1>
+<p>Brought to you by your beloved (ex)-teaching head.</p>
+<h1 id="table-of-content-">Table of Content:</h1>
+<ul>
+<li>variables</li>
+<li>types</li>
+<li>operations</li>
+<li>functions</li>
+<li>pairs</li>
+<li>lists</li>
+</ul>
+<h1 id="variables">Variables</h1>
+<p>Remember in python, this is what happens...</p>
+<pre><code class="lang-python">x = 3
+x = 4
+x = &quot;I don&#39;t care what you do here.&quot;
+</code></pre>
+<p>But haskell is pure!!!</p>
+<h3 id="purity">Purity</h3>
+<p>In haskell, variables are merely &#39;nicknames&#39; of values. Furthermore, you can&#39;t just give the nickname to someone else. In other words, there cannot be any &#39;side effects&#39; to anything you do.</p>
+<pre><code class="lang-haskell">x :: Int
+x = 3
+x = 4 -- Error! Redefinition
+</code></pre>
+<p>In other words, the <code>=</code> sign in haskell works like your mathematical definition - once it is defined, you cannot change it.</p>
+<h1 id="types">Types</h1>
+<p>In python, we have <code>int</code>, <code>str</code>, and <code>char</code> data types. It is the same in haskell, except that there are more and they appear in different names</p>
+<h3 id="-int-"><code>Int</code></h3>
+<p>The type <code>Int</code> is like the python data type <code>int</code>, since they both hold integer values. The difference that the python <code>int</code> can hold up to some pretty large values, while this is not the case for haskell. In haskell, <code>Int</code> only stores machine sized integers. That is, somewhere near \(\pm 2^{63} \) depending on your machine. To find the exact size, you can do this:</p>
+<pre><code class="lang-haskell">biggestInt, smallestInt :: Int
+biggestInt  = maxBound
+smallestInt = minBound
+</code></pre>
+<h3 id="-double-"><code>Double</code></h3>
+<p>There is nothing to interesting about <code>Double</code>. It is just like the python <code>float</code>.</p>
+<pre><code class="lang-haskell">d1, d2 :: Double
+d1 = 3.14159
+d2 = 6.02e23 -- yes, you can use scientific notation
+</code></pre>
+<h3 id="-char-"><code>Char</code></h3>
+<p>A <code>Char</code> data type holds a unicode character</p>
+<pre><code class="lang-haskell">c1, c2 :: Char
+c1 = &#39;x&#39;
+c2 = &#39;Ø&#39; -- Yes, non ascii also!!
+</code></pre>
+<p>Note that a <code>Char</code> value must be surrounded with a pair of single quotes.</p>
+<h3 id="-bool-"><code>Bool</code></h3>
+<p>A <code>Bool</code> data type holds a boolean value(True or False)</p>
+<pre><code class="lang-haskell">b1, b2 :: Bool
+b1 = True
+b2 = False -- Just your plain old stuff
+</code></pre>
+<h3 id="-string-"><code>String</code></h3>
+<p>Strings are just list of characters(we will cover lists later)</p>
+<pre><code class="lang-haskell">s :: String
+s = &quot;Hello, Haskell!&quot;
+</code></pre>
+<p>Note that a <code>String</code> values must be surrounded by a pair of double quotes.</p>
+<h1 id="operations">Operations</h1>
+<p>But what can we do on these data types?</p>
+<h3 id="arithmetics">Arithmetics</h3>
+<p>You can perform your beloved arithmetics with <code>Int</code>, <code>Integer</code> and <code>Double</code>.</p>
+<pre><code class="lang-haskell">ex01 = 3 + 2
+ex02 = 19 - 27
+ex03 = 2.35 * 8.6
+ex04 = 8.7 / 3.1
+ex05 = mod 19 3
+ex06 = 19 `mod` 3
+ex07 = 7 ^ 222
+ex08 = (-3) * (-7)
+</code></pre>
+<p>Notice something in ex06? The function <code>mod</code> is called with the backticks. This is what we call the infix notation. In general, <code>f a b</code> is equivalent to this expression: <code> a &#96;f&#96; b</code></p>
+<h3 id="arithmetics">Arithmetics</h3>
+<p>But what if you tried this?</p>
+<pre><code class="lang-haskell">badArith1 = 1 + 0.1
+badArith2 = 1 / 1
+</code></pre>
+<p>It turns out that both will result in a syntax error. This is because of the fact that the arithmetic operators can only operate on values of the same time, but you are trying to add a <code>Int</code> to a <code>Double</code>. The second one will also cause an error because you are trying two <code>/</code> two <code>Int</code>s, while <code>/</code> is only defined for <code>Double</code>. To perform <code>Int</code> division, you can do this: <code>a &#96;div&#96; b</code>.</p>
+<h3 id="logic">Logic</h3>
+<p>Nothing is ever complete with the good old logical operators. In haskell, you can manipulate boolean values in the following way:</p>
+<pre><code class="lang-haskell">ex11 = True &amp;&amp; False -- &amp;&amp; means &#39;and&#39;
+ex12 = not (False || True) -- || means &#39;or&#39;
+</code></pre>
+<p>Note that you do not have to put the backticks around <code>and</code> because it is defined to be an infix operator. We will cover more on that later. Of course, you can do other things that gives you a boolean result:</p>
+<pre><code class="lang-haskell">ex13 = (&#39;a&#39; == &#39;a&#39;) -- (==) tests for equality
+ex14 = (16 /= 3) -- (/=) tests for inequality
+ex15 = (5 &gt; 3) &amp;&amp; (&#39;p&#39; &lt;= &#39;q&#39;)
+ex16 = &quot;Haskell&quot; &gt; &quot;C++&quot;
+</code></pre>
+<p>You can also do if statements, though it is not very recommended:</p>
+<pre><code class="lang-haskell">ex17 = if &quot;Haskell&quot; &gt; &quot;C++&quot; then &quot;Hooray&quot; else &quot;Nooooo&quot;
+-- basically: if &lt;cond&gt; then &lt;expr1&gt; else &lt;expr2&gt;
+</code></pre>
+<h1 id="functions-">Functions!!!</h1>
+<p>Haskell is FUNCTIONal, so function does play a big part in the language.</p>
+<h3 id="a-tiny-peek">A Tiny Peek</h3>
+<p>Here is a very simple function that computes the factorial of an integer:</p>
+<pre><code class="lang-haskell">factorial :: Integer -&gt; Integer
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+</code></pre>
+<p>This may not make sense to you yet, so let&#39;s look at it carefully. The first line says that the function maps an <code>Integer</code> to another <code>Integer</code>. The second line says if the input is a <code>0</code>, the return value if <code>1</code>. The last line says for any other integers, the return value is the integer <code>n</code> multiplied by the factorial of <code>n - 1</code>.</p>
+<p>For one thing, that looks like math!!!</p>
+<h3 id="well-yes-that-39-s-true-">Well, yes, that&#39;s true.</h3>
+<p>Haskell functions are indeed like mathematical functions in the sense that they just map one value to another, and we can define them recursively like what I&#39;ve done above. Besides specifying different rules for different values, we can also use a <code>guard</code>:</p>
+<pre><code class="lang-haskell">hailstone :: Integer -&gt; Integer
+hailstone n
+  | n `mod` 2 == 0  -&gt; n `div` 2
+  | otherwise       -&gt; 3 * n + 1
+</code></pre>
+<p>This looks like the piecewise function mentioned in the H2 Math tutorial. Remember?</p>
+<h3 id="what-39-s-that-weird-line-">What&#39;s that weird line?</h3>
+<p>In the previous examples, we always write something like <code>function1 :: a -&gt; b</code> before the actual definition of the function. This is the <code>type</code> of functions, which specify what types it accepts as input, and what type its output is.</p>
+<h3 id="there-39-s-more-">There&#39;s more...</h3>
+<p>What if you want more than one argument to the function? Of course you can pass in a pair, or a triplet, but here is an easier way:</p>
+<pre><code class="lang-haskell">sumThree :: Integer -&gt; Integer -&gt; Integer -&gt; Integer
+sumThree x y z = x + y + z
+</code></pre>
+<p>which basically says the function takes in three <code>Integer</code>s and return another one. For now, just remember that the type signature goes like:</p>
+<pre><code class="lang-haskell">function1 :: t1 -&gt; t2 -&gt; t3 -&gt; ... -&gt; tn -&gt; tr
+</code></pre>
+<p>where $(t_1)$ to $(t_n)$ are types of the inputs, and $(t_r)$ is the type of the output.</p>
+<h1 id="pairs">Pairs</h1>
+<p>a.k.a. ships, or couples</p>
+<h3 id="how-they-work">How they work</h3>
+<p>We can pair two values up using the pair constructor. It looks something like:</p>
+<pre><code class="lang-haskell">p :: (Int, Char)
+p = (3, &#39;x&#39;)
+</code></pre>
+<p>You know what&#39;s better? Its value can be extracted using <em>pattern matching</em>:</p>
+<pre><code class="lang-haskell">sumPair :: (Int,Int) -&gt; Int
+sumPair (x,y) = x + y
+</code></pre>
+<h1 id="lists">Lists</h1>
+<p>The standard stuff</p>
+<h3 id="examples">Examples</h3>
+<pre><code class="lang-haskell">nums, range, range2 :: [Integer]
+nums   = [1,2,3,19]
+range  = [1..100]
+range2 = [2,4..100]
+</code></pre>
+<p>Haskell (like Python) also has list comprehensions; you can read about them <a href="http://learnyouahaskell.com/starting-out">here</a></p>
+<h3 id="strings">Strings</h3>
+<p>Strings are just lists of characters!!!</p>
+<pre><code class="lang-haskell">-- hello1 and hello2 are exactly the same.
+
+hello1 :: [Char]
+hello1 = [&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]
+
+hello2 :: String
+hello2 = &quot;hello&quot;
+
+helloSame = hello1 == hello2 -- True
+</code></pre>
+<h3 id="constructing-lists">Constructing Lists</h3>
+<p>The simplest list is the empty list:</p>
+<pre><code class="lang-haskell">emptyList = []
+</code></pre>
+<p>Other lists are built up from the empty list using the <code>cons</code> operator, <code>(:)</code>. Cons takes an element and a list, and produces a new list with the element prepended to the front.</p>
+<pre><code class="lang-haskell">ex18 = 1 : []
+ex19 = 3 : (1 : [])
+ex20 = 2 : 3 : 4 : []
+ex21 = [2,3,4] == 2 : 3 : 4 : []
+</code></pre>
+<h3 id="functions-on-lists">Functions on Lists</h3>
+<p>We can apply pattern matching on lists too!</p>
+<pre><code class="lang-haskell">-- Compute the length of a list of Integers.
+intListLength :: [Integer] -&gt; Integer
+intListLength []     = 0
+intListLength (x:xs) = 1 + intListLength xs
+</code></pre>
+<p>The first part says that the length of an empty list is zero. The second part says that if the input list looks like <code>(x:xs)</code>, that is, a first element <code>x</code> <code>cons</code>ed onto a remaining list <code>xs</code>, then the length is one more than the length of <code>xs</code>.</p>
+<h1 id="that-39-s-it-for-now">That&#39;s it for now</h1>
+<p>Take your time to absorb :3</p>
+
+            </section>
+        </div>
+    </div>
+
+
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/reveal/plugin/highlight/highlight.js"></script>
+    <script src="assets/js/tipuesearch_set.js"></script>
+    <script src="assets/js/tipuesearch.min.js"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/x-mathjax-config">
+    	MathJax.Hub.Config({
+    		tex2jax: {inlineMath: [['$(',')$'], ['\\(','\\)']]}
+    	});
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+            $('#tipue_search_input').tipuesearch({
+                mode: 'json',
+                contentLocation: 'index.json'
+            });
+        });
+    </script>
+    <script src="/socket.io/socket.io.js"></script><script>socket = io.connect();socket.on('reload', function() { location.reload(); });</script>
+    <!-- Generated by Vegetables from 'lesson1.md' with format 'default' - '5/16/2017, 10:55:23 PM' -->
+</body>
+
+</html>
