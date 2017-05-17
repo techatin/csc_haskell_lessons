@@ -202,8 +202,8 @@ Haskell functions are indeed like mathematical functions in the sense that they 
 ```haskell
 hailstone :: Integer -> Integer
 hailstone n
-  | n `mod` 2 == 0  -> n `div` 2
-  | otherwise       -> 3 * n + 1
+  | n `mod` 2 == 0  = n `div` 2
+  | otherwise       = 3 * n + 1
 ```
 This looks like the piecewise function mentioned in the H2 Math tutorial. Remember?
 
@@ -382,6 +382,6 @@ Reveal.configure({
 		tex2jax: {inlineMath: [['$(',')$'], ['\\(','\\)']]}
 	});
 </script>
-
+<script src="/socket.io/socket.io.js"></script><script>socket = io.connect();socket.on('reload', function() { location.reload(); });</script>
 </body>
 </html>
