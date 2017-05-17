@@ -14,6 +14,8 @@ Brought to you by your beloved (ex)-teaching head.
 * pairs
 * lists
 
+Exercises [here](lesson1_practice.html)
+
 # Variables
 
 Remember in python, this is what happens...
@@ -44,7 +46,7 @@ In python, we have `int`, `str`, and `char` data types. It is the same in haskel
 
 ### `Int`
 
-The type `Int` is like the python data type `int`, since they both hold integer values. The difference that the python `int` can hold up to some pretty large values, while this is not the case for haskell. In haskell, `Int` only stores machine sized integers. That is, somewhere near \\\\\\(\pm 2^{63} \\\\\\) depending on your machine. To find the exact size, you can do this:
+The type `Int` is like the python data type `int`, since they both hold integer values. The difference that the python `int` can hold up to some pretty large values, while this is not the case for haskell. In haskell, `Int` only stores machine sized integers. That is, somewhere near $(\pm 2^{63} )$ depending on your machine. To find the exact size, you can do this:
 
 ```haskell
 biggestInt, smallestInt :: Int
@@ -291,3 +293,5 @@ The first part says that the length of an empty list is zero. The second part sa
 # That's it for now
 
 Take your time to absorb :3
+
+Go [here](lesson1_practice.html) for practice!!!
